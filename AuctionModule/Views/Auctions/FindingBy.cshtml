@@ -7,34 +7,34 @@
 <div class="auction">
     <h3>@Model.Title</h3>
     <div class="detail">
-        <p>Starting Time:@auction.StartTime.ToString("g")</p>
-        <p>End Time:@auction.EndTime.ToString("g")</p>
-        <p>Start Price:@auction.StartPrice.ToString("C")</p>
+        <p>Starting Time:@Model.StartTime.ToString("g")</p>
+        <p>End Time:@Model.EndTime.ToString("g")</p>
+        <p>Start Price:@Model.StartPrice.ToString("C")</p>
         <p>
             Current Price:
-            @if (auction.CurrentPrice == null)
+            @if (Model.CurrentPrice == null)
             {
                 @:[No Bid]
             }
             else
             {
-                <span>@auction.CurrentPrice.Value.ToString("C")</span>
-                <span>[@auction.Bidcount bids]</span>
+                <span>@Model.CurrentPrice.Value.ToString("C")</span>
+                <span>[@Model.Bidcount bids]</span>
             }
         </p>
-        @if (auction.ImageUrl != null)
+        @if (Model.ImageUrl != null)
         {
-            <img src="@Url.Content(auction.ImageUrl)" alt="@auction.Title" />
+            <img src="@Url.Content(Model.ImageUrl)" alt="@auction.Title" />
         }
         <div class="description">
-            @auction.Description
+            @Model.Description
         </div>
     </div>
 </div>
 <p>
-    @using (Html.BeginForm("Bid", "Auctions", new { }))
+    @using (Html.BeginForm("Bid", "Auctions"))
     {
-        var lowestBid = auction.CurrentPrice.GetValueOrDefault(auction.StartPrice) + 1;
+        var lowestBid = Model.CurrentPrice.GetValueOrDefault(Model.StartPrice) + 1;
         <span>
             Bid:$  @Html.TextBox("amount", lowestBid)
             @Html.ValidationMessage("amount")
@@ -44,3 +44,26 @@
 
     }
 </p>
+@section script
+{
+    <script type="text/javascript">
+        $(function () {
+            $('.post-bid').on("click",
+                function () {
+                    var form = $(this).parent('form');
+                    alert(form);
+                    $.ajax({
+                        type: "POST",
+                        url: form.attr('action'),
+                        data: form.serialize()
+
+                    }).success(function () {
+                        alert("Bid has been submited successfully");
+                    }).error(function () {
+                        alert("Your Bid has been rejected");
+                    });
+                    return false;
+                });
+        });
+    </script>
+}
