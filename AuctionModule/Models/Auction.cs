@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace AuctionModule.Models
@@ -28,7 +29,18 @@ namespace AuctionModule.Models
         public decimal StartPrice { get; set; }
 
         public string Category { get; set; }
+        public virtual Collection<Bid> Bids { get; private set; }
 
+        public int Bidcount
+        {
+            get { return Bids.Count; }
+        }
+
+        public Auction()
+        {
+            Bids = new Collection<Bid>();
+
+        }
 
     }
 }
