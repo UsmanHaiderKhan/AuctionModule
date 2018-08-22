@@ -54,5 +54,32 @@ namespace AuctionModule.Controllers
 
             return View();
         }
+        [HttpPost]
+        public ActionResult Bid(Bid bid)
+        {
+            AuctionContext db = new AuctionContext();
+            using (db)
+            {
+                var auction = db.Auctions.Find(bid.AuctionId);
+                if (auction == null)
+                {
+                    ModelState.AddModelError("AuctionId", "Auction Not Found");
+                }
+                else if (auction.CurrentPrice >= bid.Amount)
+                {
+                    ModelState.AddModelError("Amount", "Bid Amount Less then the current Amount");
+                }
+                else
+                {
+                    bid.UserName = User.Identity.Name;
+                    db.Bids.Add(bid);
+                    auction.CurrentPrice = bid.Amount;
+                    db.SaveChanges();
+                }
+            }
+
+            return View();
+
+        }
     }
 }
