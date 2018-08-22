@@ -1,7 +1,6 @@
 ﻿using AuctionModule.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace AuctionModule.Controllers
@@ -79,8 +78,7 @@ namespace AuctionModule.Controllers
                 }
                 if (!Request.IsAjaxRequest())
                     return RedirectToAction("FindingBy", new { id = bid.AuctionId });
-                var httpsStatusCode = ModelState.IsValid ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
-                return new HttpStatusCodeResult(httpsStatusCode);
+                return PartialView("_CurrentPrice", auction);
             }
 
 
