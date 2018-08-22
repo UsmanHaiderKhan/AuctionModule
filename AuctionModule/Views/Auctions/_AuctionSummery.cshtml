@@ -1,0 +1,8 @@
+﻿@model AuctionModule.Models.Auction
+<div class="auction-title">
+    <h4 class="title">@Model.Title</h4>
+    <p class="end-time">@Model.EndTime.ToString("g")</p>
+    <p class="curr-price">
+        @Model.CurrentPrice.GetValueOrDefault(Model.StartPrice).ToString("C")
+    </p>
+</div>
