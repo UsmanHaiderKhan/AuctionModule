@@ -10,7 +10,7 @@
         <p>Starting Time:@Model.StartTime.ToString("g")</p>
         <p>End Time:@Model.EndTime.ToString("g")</p>
         <p>Start Price:@Model.StartPrice.ToString("C")</p>
-        <p>
+        <p class="curr-price">
             Current Price:
             @if (Model.CurrentPrice == null)
             {
@@ -50,15 +50,15 @@
         $(function () {
             $('.post-bid').on("click",
                 function () {
-                    var form = $(this).parent('form');
-                    alert(form);
+                    var form = $(this).parent("form");
+
                     $.ajax({
                         type: "POST",
                         url: form.attr('action'),
                         data: form.serialize()
 
-                    }).success(function () {
-                        alert("Bid has been submited successfully");
+                    }).success(function (html) {
+                        $('.curr-price').replaceWith(html);
                     }).error(function () {
                         alert("Your Bid has been rejected");
                     });
