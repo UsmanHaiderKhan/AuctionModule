@@ -21,17 +21,23 @@ namespace AuctionModule.Controllers
         }
         public ActionResult Auction([Bind(Exclude = "CurrentPrice")]Auction auction)
         {
-            if (string.IsNullOrWhiteSpace(auction.Title))
-            {
-                ModelState.AddModelError("Title", "Title Must  be Required");
-            }
-            else if (auction.Title.Length < 5 || auction.Title.Length > 200)
-            {
-                ModelState.AddModelError("Title", "Your Title Must be Greater Then 5 and Less then 200 char");
-            }
+            //if (string.IsNullOrWhiteSpace(auction.Title))
+            //{
+            //    ModelState.AddModelError("Title", "Title Must  be Required");
+            //}
+            //else if (auction.Title.Length < 5 || auction.Title.Length > 200)
+            //{
+            //    ModelState.AddModelError("Title", "Your Title Must be Greater Then 5 and Less then 200 char");
+            //}
 
             if (ModelState.IsValid)
             {
+                AuctionContext db = new AuctionContext();
+                using (db)
+                {
+                    db.Auctions.Add(auction);
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
