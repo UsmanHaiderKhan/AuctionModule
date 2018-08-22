@@ -1,4 +1,6 @@
 ﻿using AuctionModule.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace AuctionModule.Controllers
@@ -8,17 +10,25 @@ namespace AuctionModule.Controllers
         // GET: Auctions
         public ActionResult Index()
         {
-
-            return View();
+            AuctionContext db = new AuctionContext();
+            List<Auction> auctions = db.Auctions.ToList();
+            return View(auctions);
         }
 
-
+        public ActionResult FindingBy(long id)
+        {
+            AuctionContext db = new AuctionContext();
+            var auction = db.Auctions.Find(id);
+            return View(auction);
+        }
+        [HttpGet]
         public ActionResult Auction()
         {
             var categoryList = new SelectList(new[] { "Games", "Mobiles", "Movies", "Drinks", "Fabrics" });
             ViewBag.cate = categoryList;
             return View();
         }
+        [HttpPost]
         public ActionResult Auction([Bind(Exclude = "CurrentPrice")]Auction auction)
         {
             //if (string.IsNullOrWhiteSpace(auction.Title))
