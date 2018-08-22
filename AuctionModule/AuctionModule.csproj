@@ -116,8 +116,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808221133584_InitialCreate.cs" />
+    <Compile Include="Migrations\201808221133584_InitialCreate.Designer.cs">
+      <DependentUpon>201808221133584_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221338533_AddedBidsbl.cs" />
+    <Compile Include="Migrations\201808221338533_AddedBidsbl.Designer.cs">
+      <DependentUpon>201808221338533_AddedBidsbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auction.cs" />
     <Compile Include="Models\AuctionContext.cs" />
+    <Compile Include="Models\Bid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +141,7 @@
     <Content Include="Views\Auctions\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Auctions\Auction.cshtml" />
+    <Content Include="Views\Auctions\FindingBy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,6 +151,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808221133584_InitialCreate.resx">
+      <DependentUpon>201808221133584_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221338533_AddedBidsbl.resx">
+      <DependentUpon>201808221338533_AddedBidsbl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
