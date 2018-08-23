@@ -12,7 +12,7 @@
         EndTime = DateTime.Now.AddDays(7)
     };
 }
-<h2>Index</h2>
+@Html.Partial("~/Views/Shared/_Slider.cshtml")
 @*<div class="auction">
         <h3>@auction.Title</h3>
         <div class="detail">
@@ -39,9 +39,10 @@
             </div>
         </div>
     </div>*@
-<div class="container">
-    @foreach (var item in Model)
-    {
-        @Html.Partial("_AuctionSummery", item)
-    }
-</div>
+@foreach (var item in Model)
+
+{
+
+    @Html.Partial("_AuctionSummery", item)
+
+}
