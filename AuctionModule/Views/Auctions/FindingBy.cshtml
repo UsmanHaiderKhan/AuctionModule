@@ -44,12 +44,18 @@
 
     }
 </p>
+<script id="templateofid" type="application/html-template">
+    <p class="curr-price">
+        <span>Current Price:{{CurrentPrice}}</span>
+        <span>BidsCount:{{BidCount}}bids</span>
+    </p>
+</script>
 @section script
 {
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             $('.post-bid').on("click",
-                function () {
+                function() {
                     var form = $(this).parent("form");
 
                     $.ajax({
@@ -57,9 +63,13 @@
                         url: form.attr('action'),
                         data: form.serialize()
 
-                    }).success(function (html) {
+                    }).success(function(data) {
+                        var template = $('#templateofid').clone().html();
+                        var html = template.replace('{{CurrentPrice}}', data.CurrentPrice)
+                            .replace('{{BidCount}}', data.BidCount);
+
                         $('.curr-price').replaceWith(html);
-                    }).error(function () {
+                    }).error(function() {
                         alert("Your Bid has been rejected");
                     });
                     return false;
