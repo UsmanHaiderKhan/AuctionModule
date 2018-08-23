@@ -104,6 +104,27 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\flickity.min.css" />
+    <Content Include="Content\img\flickity.pkgd.min.js" />
+    <Content Include="Content\img\IM-Banners %281%29.jpg" />
+    <Content Include="Content\img\IM-Banners %282%29.jpg" />
+    <Content Include="Content\img\IM-Banners %283%29.jpg" />
+    <Content Include="Content\img\IM-Banners %285%29.jpg" />
+    <Content Include="Content\img\IM-Banners %286%29.jpg" />
+    <Content Include="Content\img\lightbox\default-skin.png" />
+    <Content Include="Content\img\lightbox\default-skin.svg" />
+    <Content Include="Content\img\lightbox\preloader.gif" />
+    <Content Include="Content\img\overlays\01.png" />
+    <Content Include="Content\img\overlays\02.png" />
+    <Content Include="Content\img\overlays\03.png" />
+    <Content Include="Content\img\overlays\04.png" />
+    <Content Include="Content\img\overlays\05.png" />
+    <Content Include="Content\img\overlays\06.png" />
+    <Content Include="Content\img\overlays\07.png" />
+    <Content Include="Content\img\overlays\08.png" />
+    <Content Include="Content\img\overlays\09.png" />
+    <Content Include="Content\img\svg\arrow_left.svg" />
+    <Content Include="Content\img\svg\arrow_right.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -192,6 +213,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_Slider.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
